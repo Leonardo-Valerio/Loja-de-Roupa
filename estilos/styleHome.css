@@ -42,6 +42,7 @@ a{
 .apresentacao > div:hover{
     transition-duration:0.5s;
     background-color: rgba(0, 0, 0, 0.67);
+    border-radius:10px ;
 }
 .imgPrincipal{
     margin-top: 45px;
@@ -151,8 +152,10 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
     transition-duration: 0.5s;
-    background-color: white;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.67);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border:none;
 }
 
 footer{
