@@ -60,12 +60,17 @@ a{
     background-repeat: no-repeat;
     background-size: cover;
     width: 90vw;
-    margin-bottom: 70px;
+    margin-bottom: 10px;
+    box-shadow: 0px  3px 4px 4px rgba(0, 0, 0, 0.17);
+}
+.imgPrincipal p{
+    margin-bottom: 60px;
 }
 .imgPrincipal > div:hover{
     transition-duration: 0.5s;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0px  2px 5px 5px rgba(0, 0, 0, 0.277);
     
 }
 .imgPequenas {
@@ -81,12 +86,13 @@ a{
 }
 
 .imgPequenas .imgPq1{
-    background-position: center;
+    background-position: center ;
     height: 400px;
-    background-image: url(../imagens/camiseta-2.jpg);
+    background-image: url(../imagens/jaqueta-jeans-3.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 10px;
+    box-shadow: 0px  3px 4px 4px rgba(0, 0, 0, 0.093);
 }
 
 
@@ -97,6 +103,7 @@ a{
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 10px;
+    box-shadow: 0px  3px 4px 4px rgba(0, 0, 0, 0.093);
 }
 .imgPequenas .imgPq3{
     background-position: center;
@@ -105,24 +112,28 @@ a{
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 10px;
+    box-shadow: 0px  3px 4px 4px rgba(0, 0, 0, 0.093);
 }
 .imgPq1:hover{
     transition-duration: 0.5s;
     margin-bottom: 5px;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0px  2px 5px 5px rgba(0, 0, 0, 0.371);
 }
 .imgPq2:hover{
     transition-duration: 0.5s;
     margin-bottom: 5px;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0px  2px 5px 5px rgba(0, 0, 0, 0.277);
 }
 .imgPq3:hover{
     transition-duration: 0.5s;
     margin-bottom: 5px;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0px  2px 5px 5px rgba(0, 0, 0, 0.223);
 }
 .promo{
     text-align: center;
@@ -152,10 +163,11 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
     transition-duration: 0.5s;
+    border: solid 2px rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0.67);
     color: rgb(255, 255, 255);
     border-radius: 10px;
-    border:none;
+    
 }
 
 footer{

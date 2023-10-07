@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../estilos/styleProdutos.css">
     <link rel="stylesheet" href="../estilos/styleHome.css">
+    <link rel="stylesheet" href="../estilos/styleQueries.css">
     <script src="../scripts/scriptHome.js"></script>
 </head>
 <body onload="nomeProduto()">
@@ -16,10 +17,10 @@
     </nav>
     <section class="tudo">
         <section class="pecas">
-            <div class="img1"></div>
-            <div class="img2"></div>
-            <div class="img3"></div>
-            <div class="img4"></div>
+            <div class="img1" id="img1"></div>
+            <div class="img2" id="img2"></div>
+            <div class="img3" id="img3"></div>
+            <div class="img4" id="img4"></div>
         </section>
         <section class="infos">
             <h1 id="roupa"></h1>
@@ -28,6 +29,24 @@
             <button>Adicionar ao carrinho</button>
         </section>
     </section>
-
+    <h2 class="promo">Receba Promoções</h2>
+    <section class="formulario">
+        
+        <form action="contato" class="contato">
+            <div class="row">
+                <input type="text" name="nome" id="inome" placeholder="Insira seu Nome">
+                <input type="email" name="email" id="iemail" placeholder="Insira seu e-mail">
+            </div>
+            <div class="row">
+                <input type="tel" name="telefone" id="itelefone" placeholder="Insira seu Telefone">
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
+    </section>
+    <footer >
+        <a href="" class="menu">Home</a>
+        <a href="" class="menu">Sobre Nós</a>
+    </footer>
+    
 </body>
 </html>
