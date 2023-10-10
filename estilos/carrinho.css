@@ -1,0 +1,7 @@
+div{
+    border: solid 1px black;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

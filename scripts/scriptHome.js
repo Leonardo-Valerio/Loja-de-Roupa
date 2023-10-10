@@ -8,10 +8,20 @@ class Roupas{
         this.Img = img
     }
 }
+class Items{
+    Produto
+    Preco
+    Quantidade
+    constructor(produto,preco,quantidade){
+        this.Produto = produto
+        this.Preco = preco
+        this.Quantidade = quantidade
+    }
+}
 shirt1 = new Roupas('Camiseta Slim Preta', 120, ["../imagens/camiseta-3.jpg","../imagens/camiseta-1.jpg","../imagens/camiseta-preta.jpg","../imagens/camiseta-2.jpg"]);
-shirt2 = new Roupas('Jaqueta Jeans', 230, ["../imagens/jaqueta-jeans-3.jpg","../imagens/jaqueta-jeans.jpg","../imagens/jaqueta-jeans-1.jpg","../imagens/jaqueta-jeans-4.jpg"]);
-shirt3 = new Roupas('Camiseta Manga Longa Branca', 160,["../imagens/camisa-manga-longa.jpg","../imagens/camiseta-manga-longa-2.jpeg","../imagens/camiseta-manga-longa-3.jpg","../imagens/camiseta-manga-longa-4.jpg"]);
-shirt4 = new Roupas('Moletom Preto', 200,["../imagens/moletom-preto.jpg","../imagens/moletom-preto-2.jpg","../imagens/moletom-preto-3.jpg","../imagens/moletom-preto-4.jpg"]);
+shirt2 = new Roupas('Jaqueta Jeans',  230, ["../imagens/jaqueta-jeans-3.jpg","../imagens/jaqueta-jeans.jpg","../imagens/jaqueta-jeans-1.jpg","../imagens/jaqueta-jeans-4.jpg"]);
+shirt3 = new Roupas('Camiseta Manga Longa Branca',  160,["../imagens/camisa-manga-longa.jpg","../imagens/camiseta-manga-longa-2.jpeg","../imagens/camiseta-manga-longa-3.jpg","../imagens/camiseta-manga-longa-4.jpg"]);
+shirt4 = new Roupas('Moletom Preto',  200,["../imagens/moletom-preto.jpg","../imagens/moletom-preto-2.jpg","../imagens/moletom-preto-3.jpg","../imagens/moletom-preto-4.jpg"]);
 let arrayRoupas = [shirt1,shirt2,shirt3,shirt4]
 function salvarRoupas(numero){
  
@@ -50,4 +60,31 @@ function nomeProduto(){
     }
     
 
+}
+function inverterImg(id){
+    let imagens = JSON.parse(window.localStorage.getItem("imagem"))
+    let temp = imagens[0]
+    imagens[0] = imagens[id]
+    imagens[id] = temp
+    window.localStorage.setItem("imagem", JSON.stringify(imagens))
+    nomeProduto()
+}
+function somar(){
+    let quantidade = document.getElementById('iquantidade').value 
+    let price = quantidade * window.localStorage.getItem("preco")
+    let arrayProduto = [quantidade,window.localStorage.getItem('produto'),price]
+    let arrayCarrinho = [arrayProduto]
+    window.localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho))
+    window.alert(`${quantidade} un de ${window.localStorage.getItem('produto')} adicionados ao carrinho!`)
+    console.log(price)  
+    
+}
+function abrirMenu(){
+    let navbar = document.getElementById('navbar')
+    if(navbar.style.display == 'none'){
+        navbar.style.display = 'block'
+        
+    }else{
+        navbar.style.display = 'none'
+    }
 }

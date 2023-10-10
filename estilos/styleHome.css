@@ -6,6 +6,9 @@
     margin: 0px;
     padding: 0px;
 }
+#burguer{
+    display: none;
+}
 nav{
     height: 50px;
     margin: 10px;
