@@ -2,32 +2,28 @@ class Roupas{
     Produto
     Preco
     Img
-    constructor(produto,preco,img){
+    Quantidade
+    Id
+    constructor(produto,preco,img,id){
         this.Produto = produto
         this.Preco = preco
         this.Img = img
+        this.Quantidade = 0
+        this.Id = id
     }
 }
-class Items{
-    Produto
-    Preco
-    Quantidade
-    constructor(produto,preco,quantidade){
-        this.Produto = produto
-        this.Preco = preco
-        this.Quantidade = quantidade
-    }
-}
-shirt1 = new Roupas('Camiseta Slim Preta', 120, ["../imagens/camiseta-3.jpg","../imagens/camiseta-1.jpg","../imagens/camiseta-preta.jpg","../imagens/camiseta-2.jpg"]);
-shirt2 = new Roupas('Jaqueta Jeans',  230, ["../imagens/jaqueta-jeans-3.jpg","../imagens/jaqueta-jeans.jpg","../imagens/jaqueta-jeans-1.jpg","../imagens/jaqueta-jeans-4.jpg"]);
-shirt3 = new Roupas('Camiseta Manga Longa Branca',  160,["../imagens/camisa-manga-longa.jpg","../imagens/camiseta-manga-longa-2.jpeg","../imagens/camiseta-manga-longa-3.jpg","../imagens/camiseta-manga-longa-4.jpg"]);
-shirt4 = new Roupas('Moletom Preto',  200,["../imagens/moletom-preto.jpg","../imagens/moletom-preto-2.jpg","../imagens/moletom-preto-3.jpg","../imagens/moletom-preto-4.jpg"]);
+
+shirt1 = new Roupas('Camiseta Slim Preta', 120, ["../imagens/camiseta-3.jpg","../imagens/camiseta-1.jpg","../imagens/camiseta-preta.jpg","../imagens/camiseta-2.jpg"], 0);
+shirt2 = new Roupas('Jaqueta Jeans',  230, ["../imagens/jaqueta-jeans-3.jpg","../imagens/jaqueta-jeans.jpg","../imagens/jaqueta-jeans-1.jpg","../imagens/jaqueta-jeans-4.jpg"], 1);
+shirt3 = new Roupas('Camiseta Manga Longa Branca',  160,["../imagens/camisa-manga-longa.jpg","../imagens/camiseta-manga-longa-2.jpeg","../imagens/camiseta-manga-longa-3.jpg","../imagens/camiseta-manga-longa-4.jpg"], 2);
+shirt4 = new Roupas('Moletom Preto',  200,["../imagens/moletom-preto.jpg","../imagens/moletom-preto-2.jpg","../imagens/moletom-preto-3.jpg","../imagens/moletom-preto-4.jpg"], 3);
 let arrayRoupas = [shirt1,shirt2,shirt3,shirt4]
 function salvarRoupas(numero){
  
     window.localStorage.setItem('produto', arrayRoupas[numero].Produto);
     window.localStorage.setItem('preco', arrayRoupas[numero].Preco);
     window.localStorage.setItem('imagem', JSON.stringify(arrayRoupas[numero].Img));
+    window.localStorage.setItem('Id', arrayRoupas[numero].Id);
     window.location.href = "comprar.html";
     
 }
@@ -70,13 +66,19 @@ function inverterImg(id){
     nomeProduto()
 }
 function somar(){
-    let quantidade = document.getElementById('iquantidade').value 
+    let quantidade = Number(document.getElementById('iquantidade').value) 
+    let array = JSON.parse(window.localStorage.getItem('array'))
+    let id = window.localStorage.getItem('Id')
+    if (array != null){
+        array[id].Quantidade += quantidade
+        window.localStorage.setItem('array', JSON.stringify(array))
+    }else{
+        arrayRoupas[id].Quantidade += quantidade
+        window.localStorage.setItem('array',JSON.stringify(arrayRoupas))
+    }
     let price = quantidade * window.localStorage.getItem("preco")
-    let arrayProduto = [quantidade,window.localStorage.getItem('produto'),price]
-    let arrayCarrinho = [arrayProduto]
-    window.localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho))
     window.alert(`${quantidade} un de ${window.localStorage.getItem('produto')} adicionados ao carrinho!`)
-    console.log(price)  
+ 
     
 }
 function abrirMenu(){
@@ -87,4 +89,29 @@ function abrirMenu(){
     }else{
         navbar.style.display = 'none'
     }
+}
+
+function exibirCarrinho(){
+    let carrinho = document.getElementById('carrinho')
+    let box = document.createElement('div')
+    let array = window.localStorage.getItem('array')
+    let id = window.localStorage.getItem('Id')
+    array[window.localStorage.getItem('Id')].Quantidade
+    box.innerHTML = `${window.localStorage.getItem('produto')}, ${window.localStorage.getItem('preco')}, ${array[id].Quantidade}`
+    carrinho.appendChild(box)
+}
+function exibirCarrinhoo() {
+    let carrinhoDiv = document.getElementById('carrinho');
+    
+    // Limpa o conteúdo do carrinho antes de exibir os novos itens
+    carrinhoDiv.innerHTML = '';
+    
+    let arrayProdutos = JSON.parse(window.localStorage.getItem('array')) || [];
+    
+    // Itera sobre cada produto no carrinho e exibe no DOM
+    arrayProdutos.forEach(produto => {
+        let box = document.createElement('div');
+        box.innerHTML = `${produto.Produto}, ${produto.Preco}, ${produto.Quantidade}`;
+        carrinhoDiv.appendChild(box);
+    });
 }
