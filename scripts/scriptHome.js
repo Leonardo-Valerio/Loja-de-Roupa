@@ -70,13 +70,15 @@ function somar(){
     let array = JSON.parse(window.localStorage.getItem('array'))
     let id = window.localStorage.getItem('Id')
     if (array != null){
-        array[id].Quantidade += quantidade
-        window.localStorage.setItem('array', JSON.stringify(array))
+        if(array.length > 0){
+            array[id].Quantidade += quantidade
+            window.localStorage.setItem('array', JSON.stringify(array))
+        }
     }else{
         arrayRoupas[id].Quantidade += quantidade
         window.localStorage.setItem('array',JSON.stringify(arrayRoupas))
     }
-    let price = quantidade * window.localStorage.getItem("preco")
+   
     window.alert(`${quantidade} un de ${window.localStorage.getItem('produto')} adicionados ao carrinho!`)
  
     
@@ -90,28 +92,74 @@ function abrirMenu(){
         navbar.style.display = 'none'
     }
 }
+function excluirCarrinho(id){
+    let arrayProdutos = JSON.parse(window.localStorage.getItem('array'))
+    arrayProdutos.splice(id,1)
+    window.localStorage.setItem('array', JSON.stringify(arrayProdutos))
+    exibirCarrinho()
+}
 
 function exibirCarrinho(){
-    let carrinho = document.getElementById('carrinho')
-    let box = document.createElement('div')
-    let array = window.localStorage.getItem('array')
-    let id = window.localStorage.getItem('Id')
-    array[window.localStorage.getItem('Id')].Quantidade
-    box.innerHTML = `${window.localStorage.getItem('produto')}, ${window.localStorage.getItem('preco')}, ${array[id].Quantidade}`
-    carrinho.appendChild(box)
+    let carrinhoDiv = document.getElementById('carrinho')
+    carrinhoDiv.innerHTML = ''
+    carrinhoDiv.style.display = 'flex'
+    carrinhoDiv.style.flexDirection = 'column'
+    carrinhoDiv.style.alignItems ='center'
+    carrinhoDiv.style.gap = '10vh'
+    let width = window.innerWidth
+    let total = 0
+    let arrayProdutos = JSON.parse(window.localStorage.getItem('array')) || []
+    let vazio = true
+    for (let i = 0; i < arrayProdutos.length; i++){
+        
+        let produto = arrayProdutos[i]
+        let valor = produto.Quantidade * produto.Preco
+        total+= valor
+        if(produto.Quantidade > 0){
+            vazio = false
+            let text = document.createElement('p');
+            text.style.display = 'flex';
+            text.style.justifyContent = 'space-between';
+            if(width <= 750){
+                text.style.flexDirection = 'column'
+                text.style.gap = '2vh'
+            }
+            text.style.width = '80%'; 
+            text.style.fontSize = '1.5em';
+            /*let remove = document.createElement('button')
+            remove.innerHTML = 'remover'
+            remove.onclick = function() {
+                excluirCarrinho(produto.Id)
+            }*/
+            
+
+            let qtd = document.createElement('span');
+            qtd.innerText = `${produto.Quantidade}x`;
+            
+            let nome = document.createElement('span');
+            nome.innerText = produto.Produto;
+
+            let preco = document.createElement('span');
+            preco.innerText = `R$${valor}`;
+
+            //text.appendChild(remove)
+            text.appendChild(qtd);
+            text.appendChild(nome);
+            text.appendChild(preco);
+
+            carrinhoDiv.appendChild(text);
+            let totalDiv = document.getElementById('total')
+            totalDiv.innerHTML = `Total a Pagar: R$${total}`
+            totalDiv.style.fontSize = '1.5em'
+
+        }
+        
+    }
+    if(vazio){
+        carrinhoDiv.innerHTML = 'Carrinho Vazio'
+        carrinhoDiv.style.fontSize = '1.5em'
+    }
 }
-function exibirCarrinhoo() {
-    let carrinhoDiv = document.getElementById('carrinho');
-    
-    // Limpa o conteúdo do carrinho antes de exibir os novos itens
-    carrinhoDiv.innerHTML = '';
-    
-    let arrayProdutos = JSON.parse(window.localStorage.getItem('array')) || [];
-    
-    // Itera sobre cada produto no carrinho e exibe no DOM
-    arrayProdutos.forEach(produto => {
-        let box = document.createElement('div');
-        box.innerHTML = `${produto.Produto}, ${produto.Preco}, ${produto.Quantidade}`;
-        carrinhoDiv.appendChild(box);
-    });
-}
+
+
+
