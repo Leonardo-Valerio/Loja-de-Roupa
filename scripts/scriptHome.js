@@ -67,7 +67,7 @@ function inverterImg(id){
 }
 function somar(){
     let quantidade = Number(document.getElementById('iquantidade').value) 
-    let array = JSON.parse(window.localStorage.getItem('array'))
+    let array = JSON.parse(window.localStorage.getItem('array')) 
     let id = window.localStorage.getItem('Id')
     if (array != null){
         if(array.length > 0){
@@ -92,11 +92,11 @@ function abrirMenu(){
         navbar.style.display = 'none'
     }
 }
-function excluirCarrinho(id){
-    let arrayProdutos = JSON.parse(window.localStorage.getItem('array'))
-    arrayProdutos.splice(id,1)
-    window.localStorage.setItem('array', JSON.stringify(arrayProdutos))
+
+function deleteCarrinho(){
+    window.localStorage.removeItem('array') 
     exibirCarrinho()
+    location.reload()
 }
 
 function exibirCarrinho(){
@@ -126,11 +126,7 @@ function exibirCarrinho(){
             }
             text.style.width = '80%'; 
             text.style.fontSize = '1.5em';
-            /*let remove = document.createElement('button')
-            remove.innerHTML = 'remover'
-            remove.onclick = function() {
-                excluirCarrinho(produto.Id)
-            }*/
+            
             
 
             let qtd = document.createElement('span');
@@ -142,7 +138,7 @@ function exibirCarrinho(){
             let preco = document.createElement('span');
             preco.innerText = `R$${valor}`;
 
-            //text.appendChild(remove)
+            
             text.appendChild(qtd);
             text.appendChild(nome);
             text.appendChild(preco);
@@ -159,6 +155,28 @@ function exibirCarrinho(){
         carrinhoDiv.innerHTML = 'Carrinho Vazio'
         carrinhoDiv.style.fontSize = '1.5em'
     }
+    if(!vazio){
+        let apagarCarrinho = document.getElementById('apagar')
+        let apagar = document.createElement('button')
+        apagar.innerHTML ='Excluir Carrinho'
+        apagar.addEventListener("click", deleteCarrinho)
+        apagarCarrinho.appendChild(apagar)
+        apagar.style.padding = '10px'
+        apagar.style.backgroundColor = 'white'
+        apagar.style.color = 'red'
+        apagar.style.border = 'solid 1px red'
+        apagar.addEventListener("mouseover",function(){
+            apagar.style.transitionDuration = '0.5s'
+            apagar.style.borderRadius = '10px'
+            apagar.style.cursor = 'pointer'
+        })
+        apagar.addEventListener("mouseout",function(){
+            apagar.style.transitionDuration = '0.5s'
+            apagar.style.borderRadius = '0px'
+            apagar.style.cursor = 'default'
+        })
+    }
+    
 }
 
 
