@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Techa Man</title>
+    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../estilos/styleProdutos.css">
     <link rel="stylesheet" href="../estilos/styleHome.css">
     <link rel="stylesheet" href="../estilos/styleQueries.css">
@@ -28,20 +29,20 @@
             <h1 id="roupa"></h1>
             <h2 id="valor"></h2>
             <input type="number" name="quatidade" id="iquantidade" value="1">
-            <button onclick="somar()">Adicionar ao carrinho</button>
+            <button onclick="adicionarCarrinho()">Adicionar ao carrinho</button>
         </section>
     </section>
     <h2 class="promo">Receba Promoções</h2>
     <section class="formulario">
         
-        <form action="contato" class="contato">
+        <form action="contato" class="contato" id="contato">
             <div class="row">
-                <input type="text" name="nome" id="inome" placeholder="Insira seu Nome">
-                <input type="email" name="email" id="iemail" placeholder="Insira seu e-mail">
+                <input type="text" name="nome" id="inome" placeholder="Insira seu Nome" required minlength="3" maxlength="35">
+                <input type="email" name="email" id="iemail" placeholder="Insira seu e-mail" required>
             </div>
             <div class="row">
-                <input type="tel" name="telefone" id="itelefone" placeholder="Insira seu Telefone">
-                <input type="submit" value="Enviar">
+                <input type="tel" name="telefone" id="itelefone" placeholder="Insira seu Telefone" maxlength="11" minlength="9" required>
+                <input type="submit" value="Enviar" onclick="enviarForm()" >
             </div>
         </form>
     </section>

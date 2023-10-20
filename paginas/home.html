@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tech Man</title>
+    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../estilos/styleHome.css">
     <link rel="stylesheet" href="../estilos/styleQueries.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -20,9 +21,7 @@
     <section class="apresentacao">
         <h1>Seu Armário Tech</h1>
         <p>Navegue e se inspire no mundo da moda</p>
-        <div>
-            <a href="" class="compra">Comprar</a>
-        </div>
+        
     </section>
     <section class="imgPrincipal">
         <div  onclick="salvarRoupas(0)"></div>
@@ -48,11 +47,11 @@
         
         <form action="contato" class="contato" id="contato">
             <div class="row">
-                <input type="text" name="nome" id="inome" placeholder="Insira seu Nome">
-                <input type="email" name="email" id="iemail" placeholder="Insira seu e-mail">
+                <input type="text" name="nome" id="inome" placeholder="Insira seu Nome" required minlength="3" maxlength="35">
+                <input type="email" name="email" id="iemail" placeholder="Insira seu e-mail" required>
             </div>
             <div class="row">
-                <input type="tel" name="telefone" id="itelefone" placeholder="Insira seu Telefone">
+                <input type="tel" name="telefone" id="itelefone" placeholder="Insira seu Telefone" maxlength="11" minlength="9" required>
                 <input type="submit" value="Enviar">
             </div>
         </form>
@@ -61,5 +60,7 @@
         <a href="home.html" class="menu">Home</a>
         <a href="sobreNos.html" class="menu">Sobre Nós</a>
     </footer>
+    
+   
 </body>
 </html>

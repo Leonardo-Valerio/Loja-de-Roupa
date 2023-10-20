@@ -65,7 +65,7 @@ function inverterImg(id){
     window.localStorage.setItem("imagem", JSON.stringify(imagens))
     nomeProduto()
 }
-function somar(){
+function adicionarCarrinho(){
     let quantidade = Number(document.getElementById('iquantidade').value) 
     let array = JSON.parse(window.localStorage.getItem('array')) 
     let id = window.localStorage.getItem('Id')
@@ -122,7 +122,7 @@ function exibirCarrinho(){
             text.style.justifyContent = 'space-between';
             if(width <= 750){
                 text.style.flexDirection = 'column'
-                text.style.gap = '2vh'
+                text.style.gap = '2vh'   
             }
             text.style.width = '80%'; 
             text.style.fontSize = '1.5em';
@@ -147,6 +147,7 @@ function exibirCarrinho(){
             let totalDiv = document.getElementById('total')
             totalDiv.innerHTML = `Total a Pagar: R$${total}`
             totalDiv.style.fontSize = '1.5em'
+            window.localStorage.setItem('total',total)
 
         }
         
@@ -158,7 +159,7 @@ function exibirCarrinho(){
     if(!vazio){
         let apagarCarrinho = document.getElementById('apagar')
         let apagar = document.createElement('button')
-        apagar.innerHTML ='Excluir Carrinho'
+        apagar.innerHTML ='Limpar Carrinho'
         apagar.addEventListener("click", deleteCarrinho)
         apagarCarrinho.appendChild(apagar)
         apagar.style.padding = '10px'
@@ -177,6 +178,23 @@ function exibirCarrinho(){
         })
     }
     
+}
+function enviarForm(){
+    const formEl = document.getElementById('contato')
+
+        formEl.addEventListener('submit', evento =>{
+            evento.preventDefault();
+            const formData = new FormData(formEl)
+            const data = Object.fromEntries(formData)
+
+        fetch("https://apigenerator.dronahq.com/api/fdUc06aF/data", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(data)
+            }).then(res => res.json()).then(data => console.log(data))
+        })
 }
 
 
